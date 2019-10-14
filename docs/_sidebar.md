@@ -1,0 +1,6 @@
+- [Introduction](README)
+- [:one: :computer: Préparez votre environnement](_404)
+ - [Créez votre souscription Azure](01-prepare-environment/setup-azure-subscription.md)
+ - [Configurer votre environnement de développement](01-prepare-environment/configure-dev-env.md)
+- [:two: :zap: Détectez l'activité du compresseur avec Azure Functions](_404)
+- [:three: :cloud: Connectez vos devices IoT au Cloud](_404)
