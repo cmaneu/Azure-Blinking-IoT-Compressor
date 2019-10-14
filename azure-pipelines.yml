@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureFileCopy@3
   inputs:
-    SourcePath: '/docs'
+    SourcePath: '$(Build.Repository.LocalPath)\docs'
     azureSubscription: 'ca-chmaneu-demo-test(91bb2133-838a-4dd3-b0ed-fd9d387bfef9)'
     Destination: 'AzureBlob'
     storage: 'iotblinkingworkshop'
