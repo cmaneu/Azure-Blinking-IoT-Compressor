@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureFileCopy@3
+  inputs:
+    SourcePath: '/docs'
+    azureSubscription: 'ca-chmaneu-demo-test(91bb2133-838a-4dd3-b0ed-fd9d387bfef9)'
+    Destination: 'AzureBlob'
+    storage: 'iotblinkingworkshop'
+    ContainerName: '$web'
