@@ -3,78 +3,11 @@
 #include "AZ3166WiFi.h"
 #include "DevKitMQTTClient.h"
 #include "led.h"
-#include "parson.h"
+#include "deviceTwin.h"
 
 static bool hasWifi = false;
 static bool hasIoTHub = false;
 
-
-void parseTwinMessage(DEVICE_TWIN_UPDATE_STATE updateState, const char *message)
-{
-    int ledR, ledG, ledB = 0;
-    JSON_Value *root_value;
-    root_value = json_parse_string(message);
-    if (json_value_get_type(root_value) != JSONObject)
-    {
-        if (root_value != NULL)
-        {
-            json_value_free(root_value);
-        }
-        LogError("parse %s failed", message);
-        return;
-    }
-    JSON_Object *root_object = json_value_get_object(root_value);
-
-    if (updateState == DEVICE_TWIN_UPDATE_COMPLETE)
-    {
-        JSON_Object *desired_object = json_object_get_object(root_object, "desired");
-        if (desired_object != NULL)
-        {
-          JSON_Object *led_object = json_object_get_object(desired_object, "led");
-          if (led_object != NULL)
-          {
-            if (json_object_has_value(led_object, "r"))
-            {
-              ledR = json_object_get_number(led_object, "r");
-            }
-            if (json_object_has_value(led_object, "g"))
-            {
-              ledG = json_object_get_number(led_object, "g");
-            }
-            if (json_object_has_value(led_object, "b"))
-            {
-              ledB = json_object_get_number(led_object, "b");
-            }
-          } 
-        }
-    }
-    else
-    {
-      JSON_Object *led_object = json_object_get_object(root_object, "led");
-      if (led_object != NULL)
-      {
-        if (json_object_has_value(led_object, "r"))
-        {
-          ledR = json_object_get_number(led_object, "r");
-        }
-        if (json_object_has_value(led_object, "g"))
-        {
-          ledG = json_object_get_number(led_object, "g");
-        }
-        if (json_object_has_value(led_object, "b"))
-        {
-          ledB = json_object_get_number(led_object, "b");
-        }
-      } 
-    }
-
-    #ifdef DEBUG_SERIAL
-      Serial.printf("Device twin update received!\r\n");
-    #endif 
-    setLed(ledR, ledG, ledB);
-
-    json_value_free(root_value);
-}
 
 static void DeviceTwinCallback(DEVICE_TWIN_UPDATE_STATE updateState, const unsigned char *payLoad, int size)
 {
@@ -93,13 +26,15 @@ static void DeviceTwinCallback(DEVICE_TWIN_UPDATE_STATE updateState, const unsig
   free(temp);
 }
 
-
 void setup() {
   Screen.print(0, "IoT Compressor");
   Screen.print(1, "By @cmaneu & co");
   Screen.print(2, "github.com/");
   Screen.print(3, "cmaneu");
   setupLed();
+  Screen.print(1, "Code version");
+  Screen.print(2, FIRMWARE_VERSION);
+  Screen.print(3, "");
 
   delay(1500);
   Screen.clean();
@@ -121,7 +56,6 @@ void setup() {
     }
     hasIoTHub = true;
     DevKitMQTTClient_SetDeviceTwinCallback(DeviceTwinCallback);
-    // DevKitMQTTClient_SetOption(OPTION_MINI_SOLUTION_NAME, "BlinkingCompressor");
 
     Screen.print(2, "IoT Hub...OK");
     Screen.print(3, "Sensors...");
@@ -141,7 +75,8 @@ void loop() {
 
   if (hasIoTHub && hasWifi)
   {
-    
+    messageNumber = messageNumber+1;
+
     // Collecting Pressure
     float pressure = readPressure();
     
@@ -160,13 +95,13 @@ void loop() {
 
     // Prepare data  
     char buff[128];
-    snprintf(buff, 128, "{\"topic\": \"iot\", \"t\": \"%.1f\", \"p\": \"%.1f\", \"h\": \"%.1f\"}", temp, pressure, humidity);
+    snprintf(buff, 128, "{\"topic\": \"iot\", \"updateId\":\"%i\", \"t\": \"%.1f\", \"p\": \"%.1f\", \"h\": \"%.1f\"}", messageNumber, temp, pressure, humidity);
     
     // Send to IoT Hub
     Screen.print(1, "Sending...");
     if (DevKitMQTTClient_SendEvent(buff))
     {
-      messageNumber = messageNumber+1;
+      
       char updateBuffer [17];
       snprintf(updateBuffer, 17, "Update #%d sent", messageNumber);
       Screen.print(1, updateBuffer);
