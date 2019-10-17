@@ -8,30 +8,35 @@ static bool hasIoTHub = false;
 
 void setup() {
   Screen.print(0, "IoT Compressor");
-  Screen.print(1, "By @cmaneu");
+  Screen.print(1, "By @cmaneu & co");
   Screen.print(2, "github.com/");
   Screen.print(3, "cmaneu");
 
   delay(3000);
-
+  Screen.clean();
+  Screen.print(0, "IoT Compressor");
+  
+  Screen.print(1, "Wifi ...");
   if (WiFi.begin() == WL_CONNECTED)
   {
     hasWifi = true;
-    Screen.print(1, "Wifi OK...");
+    Screen.print(1, "Wifi ...OK");
+    Screen.print(2, "IoT Hub...");
 
     if (!DevKitMQTTClient_Init(true))
     {
       hasIoTHub = false;
-      Screen.print(1, "/!\\ Error");
+      Screen.print(0, "/!\\ Error");
       Screen.print(2, "No IoT Hub");
       return;
     }
     hasIoTHub = true;
     // DevKitMQTTClient_SetOption(OPTION_MINI_SOLUTION_NAME, "BlinkingCompressor");
 
-    Screen.print(1, "IoT Hub OK...");
-    Screen.print(2, "");
+    Screen.print(2, "IoT Hub...OK");
+    Screen.print(3, "Sensors...");
     setupSensors();
+    Screen.print(3, "Sensors...OK");
   }
   else
   {
