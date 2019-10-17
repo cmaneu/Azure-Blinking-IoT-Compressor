@@ -1,0 +1,14 @@
+{
+    "folders": [
+        {
+            "path": "src"
+        },
+        {
+            "path": "..\\..\\docs"
+        }
+    ],
+    "settings": {
+        "IoTWorkbench.BoardId": "devkit",
+        "IoTWorkbench.DevicePath": "src"
+    }
+}
