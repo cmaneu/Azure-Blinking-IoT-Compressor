@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Azure.Devices;
+using Microsoft.Azure.Cosmos.Table;
 
 namespace registrationwebsite
 {
@@ -28,8 +29,14 @@ namespace registrationwebsite
 
             string ioTHubConnectionString = Configuration["IoTHubConnectionString"];
             RegistryManager registryManager = RegistryManager.CreateFromConnectionString(ioTHubConnectionString);
-            
             services.Add(new ServiceDescriptor(typeof(RegistryManager), registryManager));
+
+            string registryStorageConnectionString = Configuration["RegistryStorage"];
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse(registryStorageConnectionString);
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient(new TableClientConfiguration());
+            CloudTable deviceMappingTable = tableClient.GetTableReference("webhooks");
+            services.Add(new ServiceDescriptor(typeof(CloudTable), deviceMappingTable));
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

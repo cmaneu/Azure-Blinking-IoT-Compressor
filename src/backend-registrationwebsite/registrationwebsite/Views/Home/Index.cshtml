@@ -6,15 +6,40 @@
     <form asp-action="Register" method="post">
         <div class="form-group">
             <label asp-for="DeviceId" class="control-label"></label>
-            @Html.DropDownListFor(m => m.DeviceId, Model.DeviceIds)
+            @Html.DropDownListFor(m => m.DeviceId, Model.DeviceIds, "-- Select a device --", new { @class = "form-control"})
         </div>
         <div class="form-group">
             <label asp-for="AzureFunctionUrl " class="control-label"></label>
-            @Html.TextBox("AzureFunctionUrl", null)
+            @Html.TextBox("AzureFunctionUrl", null, new { @class = "form-control"})
         </div>
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-primary" />
         </div>
     </form>
+    <div id="DeviceCallback">
+        @foreach(DeviceCallback deviceCallback in Model.DeviceCallbacks)
+        {
+            <input hidden="true" id="@deviceCallback.DeviceId" value="@deviceCallback.CallbackUrl"/>
+        }
+    </div>
 </div>
+
+@section Scripts{
+    <script type="text/javascript">
+    $(function(){
+        $("#DeviceId").change(function() {
+
+                var t = $(this).val();
+
+                if (t !== "" && t !== "-- Select a device --") {               
+                    $("#AzureFunctionUrl").val($("#" + t).val());
+                } else {
+                    //Let's clear the values and disable :)
+                    $("#AzureFunctionUrl").val('');
+                }
+
+            });
+    });
+    </script>
+}
 

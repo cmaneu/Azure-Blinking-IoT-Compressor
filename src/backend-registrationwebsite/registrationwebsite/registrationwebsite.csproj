@@ -6,6 +6,7 @@
   </PropertyGroup>
   <ItemGroup></ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Cosmos.Table" Version="1.0.5" />
     <PackageReference Include="Microsoft.Azure.Devices" Version="1.18.1" />
   </ItemGroup>
 </Project>
