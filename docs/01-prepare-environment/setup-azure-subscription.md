@@ -10,6 +10,7 @@ correspond le mieux à votre situation :
 
 - [J'ai déjà un abonnement](#already-sub)
 - [Je suis étudiant](#student)
+- [Je suis un abonné MSDN/Visual Studio](#vss)
 - [J'ai un Azure Pass](#azure-pass)
 - [Je n'ai rien de tout cela](#nothing)
 
@@ -77,6 +78,14 @@ visite et de vous familiariser avec l'interface du portail Azure.
 
 Vous pouvez maintenant [vérifier si tout est prêt pour la prochaine étape](#self-check).
 
+## Je suis un abonné Visual Studio / MSDN :id=vss
+
+Vous avez accès à un crédit mensuel gratuit dans le cadre de votre abonnement. Si vous ne l'avez pas déjà activé,
+il suffit d'aller sur la [page dédiée](https://azure.microsoft.com/en-us/pricing/member-offers/credit-for-visual-studio-subscribers/?wt.mc_id=blinkingcompressor-github-chmaneu)
+puis de cliquer sur le bouton **activer**.
+
+Vous pouvez maintenant [vérifier si tout est prêt pour la prochaine étape](#self-check).
+
 ## Je n'ai rien de tout cela :id=nothing
 
 Vous pouvez toujours créer un [abonnement d'essai][azure-free-trial]. Les informations de carte bleue vous seront
@@ -100,7 +109,7 @@ l'élément ![](img/check-01.png)
 
 ?>Félicitations, vous pouvez désormais passer au module suivant 🥳
 
-[azurepass]: https://www.microsoftazurepass.com/?wt.mc_id=devroadshowiot-github-chmaneu
-[azure-portal]: https://portal.azure.com/?feature.customportal=false&wt.mc_id=devroadshowiot-github-chmaneu
-[azure-free-trial]: https://azure.microsoft.com/en-us/free/?wt.mc_id=devroadshowiot-github-chmaneu
-[azure-student]: https://azure.microsoft.com/en-us/free/students/?wt.mc_id=devroadshowiot-github-chmaneu
+[azurepass]: https://www.microsoftazurepass.com/?wt.mc_id=blinkingcompressor-github-chmaneu
+[azure-portal]: https://portal.azure.com/?feature.customportal=false&wt.mc_id=blinkingcompressor-github-chmaneu
+[azure-free-trial]: https://azure.microsoft.com/en-us/free/?wt.mc_id=blinkingcompressor-github-chmaneu
+[azure-student]: https://azure.microsoft.com/en-us/free/students/?wt.mc_id=blinkingcompressor-github-chmaneu
