@@ -45,12 +45,6 @@ namespace Microsoft.Samples.IoTCompressor.Backend
                         string deviceName = eventData.Properties["deviceName"].ToString();
                         log.LogInformation($"New message from device {deviceName}");
                         var mapping = await GetDeviceMapping(deviceMappingTable, "devfestnantes19", deviceName);
-                        if (mapping == null)
-                        {
-                            log.LogInformation($"No mapping found for device {deviceName}");
-                            continue;
-                        }
-
                         log.LogInformation($"Mapping found for device {deviceName}: {mapping.Callbackurl}");
                         
                         var deviceEventMessage = JsonConvert.DeserializeObject<EventHubMessage>(messageBody) as EventHubMessage;
@@ -58,35 +52,37 @@ namespace Microsoft.Samples.IoTCompressor.Backend
                         Uri callbackUri;
                         if (Uri.TryCreate(mapping.Callbackurl, UriKind.Absolute, out callbackUri))
                         {
-                                var request = await _httpClient.PostAsJsonAsync(callbackUri, new WebHookRequestMessage()
-                                    { 
-                                        deviceId = deviceName,
-                                        temperature = deviceEventMessage.T,
-                                        humidity = deviceEventMessage.H,
-                                        pressure = deviceEventMessage.P
-                                    });
-                                if (!request.IsSuccessStatusCode)
-                                {
-                                    log.LogInformation($"Webhook call failed for device {deviceName}. Status Code: {request.StatusCode}");
-                                }
-                                else
-                                {
-                                    // TODO : parse this and send an update to the IoT Hub Device Twin
-                                    var response = JsonConvert.DeserializeObject<WebHookResponseMessage>(await request.Content.ReadAsStringAsync());
-                                    await SetDeviceTwin(deviceName, response.led.r, response.led.g, response.led.b);
-                                    log.LogInformation($"DeviceTwin for {deviceName} set to {response.led.r},{response.led.g},{response.led.b}.");
-                                }
 
-                        }
-                        
+                            var requestContent = new StringContent(JsonConvert.SerializeObject(new WebHookRequestMessage()
+                            {
+                                deviceId = deviceName,
+                                temperature = deviceEventMessage.T,
+                                humidity = deviceEventMessage.H,
+                                pressure = deviceEventMessage.P
+                            }));
+                            requestContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+                            var request = await _httpClient.PostAsync(callbackUri, requestContent);
+                            if (!request.IsSuccessStatusCode)
+                            {
+                                log.LogInformation($"Webhook call failed for device {deviceName}. Status Code: {request.StatusCode}");
+                            }
+                            else
+                            {
+                                // TODO : parse this and send an update to the IoT Hub Device Twin
+                                string content = await request.Content.ReadAsStringAsync();
+                                var response = JsonConvert.DeserializeObject<WebHookResponseMessage>(content);
+                                await SetDeviceTwin(deviceName, response.led.r, response.led.g, response.led.b);
+                                log.LogInformation($"DeviceTwin for {deviceName} set to {response.led.r},{response.led.g},{response.led.b}.");
+                            }
+                        }                       
                     }
-                    // Replace these two lines with your processing logic.
-                    await Task.Yield();
                 }
                 catch (Exception e)
                 {
                     // We need to keep processing the rest of the batch - capture this exception and continue.
                     // Also, consider capturing details of the message that failed processing so it can be processed again later.
+                    log.LogError(e, "Unable to parse response from evaluation webhook.");
                     exceptions.Add(e);
                 }
             }
@@ -133,7 +129,7 @@ namespace Microsoft.Samples.IoTCompressor.Backend
             }
             catch (System.Exception e)
             {
-                return null;
+                throw;
             }
         }
 
@@ -192,17 +188,17 @@ namespace Microsoft.Samples.IoTCompressor.Backend
     {
         public string Topic { get; set; }
         public string UpdateId { get; set; }
-        public string T { get; set; }
-        public string P { get; set; }
-        public string H { get; set; }
+        public float T { get; set; }
+        public float P { get; set; }
+        public float H { get; set; }
     }
 
     public class WebHookRequestMessage
     {
         public string deviceId { get; set; }
-        public string temperature { get; set; }
-        public string pressure { get; set; }
-        public string humidity { get; set; }
+        public float temperature { get; set; }
+        public float pressure { get; set; }
+        public float humidity { get; set; }
     }
 
     public class WebHookResponseMessage
