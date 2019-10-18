@@ -31,6 +31,9 @@ cette URL pour la prochaine étape.
 
 ## Enregistrer son webhook
 
+!> Nous sommes en train de développer une petite application afin que vous puissiez enregistrer votre
+webhook vous-même. En attendant, appelez l'un des assistants du workshop pour le faire.
+
 TK : Screenshot interface François.
 
 ## Tester son fonctionnement
