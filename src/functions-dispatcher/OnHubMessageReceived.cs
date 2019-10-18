@@ -45,6 +45,12 @@ namespace Microsoft.Samples.IoTCompressor.Backend
                         string deviceName = eventData.Properties["deviceName"].ToString();
                         log.LogInformation($"New message from device {deviceName}");
                         var mapping = await GetDeviceMapping(deviceMappingTable, "devfestnantes19", deviceName);
+                        if (mapping == null)
+                        {
+                            log.LogInformation($"No mapping found for device {deviceName}");
+                            continue;
+                        }
+
                         log.LogInformation($"Mapping found for device {deviceName}: {mapping.Callbackurl}");
                         
                         var deviceEventMessage = JsonConvert.DeserializeObject<EventHubMessage>(messageBody) as EventHubMessage;
@@ -127,7 +133,7 @@ namespace Microsoft.Samples.IoTCompressor.Backend
             }
             catch (System.Exception e)
             {
-                throw;
+                return null;
             }
         }
 
