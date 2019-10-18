@@ -1,16 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UserSecretsId>4cb2239d-b017-46bb-980d-2e28e0c49c1b</UserSecretsId>
   </PropertyGroup>
-
-
-  <ItemGroup>
-  </ItemGroup>
-
-
+  <ItemGroup></ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Devices" Version="1.18.1" />
   </ItemGroup>
-
 </Project>

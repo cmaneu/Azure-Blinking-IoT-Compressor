@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Azure.Devices;
 
 namespace registrationwebsite
 {
@@ -24,6 +25,11 @@ namespace registrationwebsite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            string ioTHubConnectionString = Configuration["IoTHubConnectionString"];
+            RegistryManager registryManager = RegistryManager.CreateFromConnectionString(ioTHubConnectionString);
+            
+            services.Add(new ServiceDescriptor(typeof(RegistryManager), registryManager));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

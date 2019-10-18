@@ -14,16 +14,17 @@ namespace registrationwebsite.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RegistryManager _registryManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RegistryManager registryManager)
         {
             _logger = logger;
+            _registryManager = registryManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            RegistryManager registryManager = RegistryManager.CreateFromConnectionString("<connectionString>");
-            IQuery deviceIdQuery = registryManager.CreateQuery("select * from devices");
+            IQuery deviceIdQuery = _registryManager.CreateQuery("select * from devices");
             List<string> deviceIdList = new List<string>();
             while(deviceIdQuery.HasMoreResults)
             {
