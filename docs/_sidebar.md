@@ -6,7 +6,7 @@
  - [ Créer une Function dans VS Code](02-azure-function-detect-activity/create-function-vscode.md)
  - [Créer une Function dans le portail](02-azure-function-detect-activity/create-function-portal.md)
  - [Ecrire du code pour détecter l'activité du compresseur](02-azure-function-detect-activity/write-function-code.md)
- - [❌ Déployez votre fonction dans Azure :cloud: ](02-azure-function-detect-activity/deploy-function-azure.md)
+ - [ Déployez votre fonction dans Azure :cloud: ](02-azure-function-detect-activity/deploy-function-azure.md)
  - [💬 Connectez votre function à Tailwind Diving 🏭 ](02-azure-function-detect-activity/connect-dispatcher.md)
 - [:three: :cloud: Connectez vos devices IoT au Cloud](_404)
  - [❌ Créer un IoT Hub](_404)

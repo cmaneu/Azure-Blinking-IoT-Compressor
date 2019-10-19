@@ -45,3 +45,8 @@ le portail) pour voir l'exécution de votre fonction.
 Pour changer les valeurs de votre board, il suffit généralement d'appliquer l'un de vos doigts sur le capteur de température.
 Si cela ne suffit pas, vous pouvez frotter votre doigt contre la paume de la main pour le réchauffer.
 Penez à laisser votre doigt plusieurs secondes, les données n'étant pas envoyées à chaque seconde.
+
+## C'est réussi ?
+
+Si votre board change bien de couleur selon votre algorithme, c'est gagné ! Passons au prochain module 🚀.
+Dans le cas contraire, faites appel à l'un des assistants afin de comprendre pourquoi cela ne fonctionne pas.
