@@ -26,7 +26,7 @@ cette URL pour la prochaine étape.
 ![](img/function-connect-02.png)
 
 > Bien évidemment, il est possible de déployer une Azure Function avec son propre nom de domaine, mais également
-> avec ses propres préfixes ou chemins. La preuve ? [maneu.fr](https://www.maneu.fr/?wt.mc_id=devroadshowiot-github-chmaneu)
+> avec ses propres préfixes ou chemins. La preuve ? [maneu.fr](https://www.maneu.fr/?wt.mc_id=blinkingcompressor-github-chmaneu)
 > n'est qu'une Azure Function :smiling:.
 
 ## Enregistrer son webhook
