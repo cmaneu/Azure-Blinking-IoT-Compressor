@@ -3,7 +3,7 @@
  - [Créez votre souscription Azure](01-prepare-environment/setup-azure-subscription.md)
  - [Configurer votre environnement de développement](01-prepare-environment/configure-dev-env.md)
 - [:two: :zap: Détectez l'activité du compresseur avec Azure Functions](02-azure-function-detect-activity/index.md)
- - [❌ Créer une Function dans VS Code](02-azure-function-detect-activity/create-function-vscode.md)
+ - [ Créer une Function dans VS Code](02-azure-function-detect-activity/create-function-vscode.md)
  - [Créer une Function dans le portail](02-azure-function-detect-activity/create-function-portal.md)
  - [Ecrire du code pour détecter l'activité du compresseur](02-azure-function-detect-activity/write-function-code.md)
  - [❌ Déployez votre fonction dans Azure :cloud: ](02-azure-function-detect-activity/deploy-function-azure.md)

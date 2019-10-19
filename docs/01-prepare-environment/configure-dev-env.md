@@ -10,7 +10,7 @@ développement:
     - L'extension [Azure Tools][vscode-azureext],
     - Les extensions pour les langages que vous allez utiliser
         - [C#][vscode-csharpext],
-        - Python
+        - Python (**3.6** et non pas 3.7)
         - Java
         - JavaScript/NodeJS est déjà inclus :)
 
