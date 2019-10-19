@@ -1,0 +1,11 @@
+trigger:
+  branches:
+    include: [backend-registrationwebsite]
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: build
