@@ -71,4 +71,3 @@ Pour cela, il suffit de cliquer sur le bouton dans la notification ou d'utiliser
 **Azure Functions: Start Streaming Logs**.
 
 ![](img/function-deploy-12.png)
-TK
