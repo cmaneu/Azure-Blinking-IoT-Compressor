@@ -1,9 +1,9 @@
 # Et après ?
 
 Vous êtes arrivée à la fin de ce workshop ? Félicitations 🥳 !
-
 N'hésitez pas à venir nous faire vos commentaires sur ce workshop - en personne ou sur Twitter.
 
+> Il vous reste du temps ? Lancez-vous sur le [module bonus](04-simulate-devices/index)
 
 ## Faire un peu le ménage
 
