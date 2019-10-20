@@ -31,10 +31,13 @@ cette URL pour la prochaine étape.
 
 ## Enregistrer son webhook
 
-!> Nous sommes en train de développer une petite application afin que vous puissiez enregistrer votre
-webhook vous-même. En attendant, appelez l'un des assistants du workshop pour le faire.
+Nous avons développés un [petit site](https://backend-registrationwebsite.azurewebsites.net/) qui vous permet d'enregistrer votre webhook. Il suffit
+de sélectionner votre device dans la combo (son n° est inscrit au dos de la board), et de coller l'URL de votre
+Azure Function. Si vous souhaitez que votre webhook soit appelé pour test, il vous suffit de cliquer sur
+"Test Callback Url".
 
-TK : Screenshot interface François.
+![](img/connector.png)
+[https://backend-registrationwebsite.azurewebsites.net/](https://backend-registrationwebsite.azurewebsites.net/)
 
 ## Tester son fonctionnement
 
