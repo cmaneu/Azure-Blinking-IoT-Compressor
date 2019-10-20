@@ -8,9 +8,9 @@
  - [Ecrire du code pour détecter l'activité du compresseur](02-azure-function-detect-activity/write-function-code.md)
  - [ Déployez votre fonction dans Azure :cloud: ](02-azure-function-detect-activity/deploy-function-azure.md)
  - [💬 Connectez votre function à Tailwind Diving 🏭 ](02-azure-function-detect-activity/connect-dispatcher.md)
-- [:three: :cloud: Connectez vos devices IoT au Cloud](_404)
- - [❌ Créer un IoT Hub](_404)
- - [❌ Connecter votre carte IoT à IoT Hub 🔌](_404)
- - [❌ Traiter les événement du Hub avec Azure Functions](_404)
+- [:three: :cloud: Connectez vos devices IoT au Cloud](03-connect-iot-devices-hub/index.md)
+ - [Créer un IoT Hub](03-connect-iot-devices-hub/create-hub.md)
+ - [Connecter votre carte IoT à IoT Hub 🔌](03-connect-iot-devices-hub/create-device.md)
+ - [❌ Traiter les événement du Hub avec Azure Functions](03-connect-iot-devices-hub/process-hub-functions.md)
 
 - [♾️ Et après ?](whats-next.md)
