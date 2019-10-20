@@ -1,0 +1,1 @@
+# Traiter les événement du Hub avec Azure Functions
