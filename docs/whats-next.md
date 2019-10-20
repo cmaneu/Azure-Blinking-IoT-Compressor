@@ -2,6 +2,9 @@
 
 Vous êtes arrivée à la fin de ce workshop ? Félicitations 🥳 !
 
+N'hésitez pas à venir nous faire vos commentaires sur ce workshop - en personne ou sur Twitter.
+
+
 ## Faire un peu le ménage
 
 Vous avez créés un certain nombre de ressources. Ces ressources pourraient entraîner un coût, ou consommer votre crédit
