@@ -41,7 +41,15 @@ void setup() {
   Screen.print(0, "IoT Compressor");
   
   Screen.print(1, "Wifi ...");
-  if (WiFi.begin() == WL_CONNECTED)
+
+  int wifiState = WiFi.begin("IoTWorkshop","AzureRocks");
+
+  if(wifiState != WL_CONNECTED)
+  {
+    wifiState = WiFi.begin();
+  }
+
+  if (wifiState == WL_CONNECTED)
   {
     hasWifi = true;
     Screen.print(1, "Wifi ...OK");

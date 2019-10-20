@@ -12,5 +12,4 @@
  - [Créer un IoT Hub](03-connect-iot-devices-hub/create-hub.md)
  - [Connecter votre carte IoT à IoT Hub 🔌](03-connect-iot-devices-hub/create-device.md)
  - [Traiter les événement du Hub avec Azure Functions](03-connect-iot-devices-hub/process-hub-functions.md)
-
 - [♾️ Et après ?](whats-next.md)
