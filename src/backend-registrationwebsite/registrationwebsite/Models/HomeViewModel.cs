@@ -12,7 +12,9 @@ namespace registrationwebsite.Models
 
         public string DeviceId{get; set;}
 
-        public string AzureFunctionUrl{get; set;}
+        public string CallbackUrl{get; set;}
+
+        public string InformationMessage{get; set;}
         
         public HomeViewModel(IEnumerable<string> deviceIds, IEnumerable<DeviceCallback> deviceCallbacks)
         {
@@ -24,6 +26,12 @@ namespace registrationwebsite.Models
 
             _deviceCallbacks = deviceCallbacks;
         }
+
+        // public HomeViewModel(IEnumerable<string> deviceIds, IEnumerable<DeviceCallback> deviceCallbacks, string informationMessage) 
+        // : this(deviceIds, deviceCallbacks)
+        // {
+        //     InformationMessage = informationMessage;
+        // }
 
         public List<SelectListItem> DeviceIds{
             get
