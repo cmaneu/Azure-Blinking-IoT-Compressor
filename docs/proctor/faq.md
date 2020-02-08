@@ -1,5 +1,33 @@
 # FAQ - for proctors
 
+
+## Setup the environment
+
+The first modules of this workshop are based on a pre-build environment. You'll
+need an Azure Subscription, with the following resources: 
+
+- an IoT Hub,
+- a Storage Account,
+- an Azure App Service (free tier should work),
+- an Event Hub
+- An Azure Function
+
+### Steps
+
+- Create an Azure Storage Account (LRS),
+- Create an Azure IoT Hub - free tier is OK,
+- Create an event hub with name `iot-events`,
+- Deploy the Azure Function from `function-dispatcher`
+    - Setup the `iotHubConnectionString` environment variable with the service connection string from IoT Hub
+    - Set `RegistryStorage` env. variable with the connection string of the Storage Account,
+    - Set `iotworkshop-dev_iothubroutes_iotworkshopfr_EVENTHUB` with the connection string of the event hub
+    - Get the URL with the function key for the `CreateDevice` function
+- Deploy the Azure App Service with code from `backend-registrationwebsite`
+    - Set `REGISTRATIONWEBSITE_IoTHubConnectionString` with IoT Hub service Connection
+    - Set `REGISTRATIONWEBSITE_RegistryStorage` with Storage Account connection string,
+- With Azure Explorer, create an empty table `webhooks`
+
+
 ## Understand board states
 
 | Board picture | State         |
