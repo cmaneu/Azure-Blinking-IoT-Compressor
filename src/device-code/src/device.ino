@@ -4,10 +4,15 @@
 #include "DevKitMQTTClient.h"
 #include "led.h"
 #include "deviceTwin.h"
+// #include "queue.h"
 
 static bool hasWifi = false;
 static bool hasIoTHub = false;
+static bool isRunning = false;
 
+// QueueArray<int> _accelerationX = QueueArray<int>();
+// QueueArray<int> _accelerationY = QueueArray<int>();
+// QueueArray<int> _accelerationZ = QueueArray<int>();
 
 static void DeviceTwinCallback(DEVICE_TWIN_UPDATE_STATE updateState, const unsigned char *payLoad, int size)
 {
@@ -22,9 +27,28 @@ static void DeviceTwinCallback(DEVICE_TWIN_UPDATE_STATE updateState, const unsig
   }
   memcpy(temp, payLoad, size);
   temp[size] = '\0';
-  parseTwinMessage(updateState, temp);
+  // parseTwinMessage(updateState, temp);
   free(temp);
 }
+
+// float computeJitter(int *array)
+// {
+//   int differences[sizeof(array) -1] = {0};
+
+//   for (size_t i = 1; i < sizeof(array); i++)
+//   {
+//     differences[i-1] = abs(array[i-1] - array[i]);
+//   }
+
+//   int jitter = 0;
+
+//   for (size_t i = 0; i < sizeof(differences); i++)
+//   {
+//     jitter = jitter + differences[i];
+//   }
+  
+//   return jitter / sizeof(differences);
+// }
 
 void setup() {
   Screen.print(0, "IoT Compressor");
@@ -85,15 +109,45 @@ void loop() {
   {
     messageNumber = messageNumber+1;
 
-    // Collecting Pressure
-    float pressure = readPressure();
-    
     // Collecting Temperature and humidity
     float temp = readTemperature();
     float humidity = readHumidity();
 
-    // Collecting Sound level
-    // TODO
+    // Collecting Accelerometer data
+
+    // _accelerationX.~QueueArray();
+    // _accelerationY.~QueueArray();
+    // _accelerationZ.~QueueArray();
+
+    // _accelerationX = QueueArray<float>();
+    // _accelerationY = QueueArray<float>();
+    // _accelerationZ = QueueArray<float>();
+
+    // for (size_t i = 0; i < 20; i++)
+    // {
+    //   int *accelerometerdata = readAccelerometer();
+    //   _accelerationX.enqueue(accelerometerdata[0]);
+    //   _accelerationY.enqueue(accelerometerdata[1]);
+    //   _accelerationZ.enqueue(accelerometerdata[2]);
+    //   delay(100);
+    // }
+    
+    // float jitterX, jitterY, jitterZ;
+
+    // jitterX = computeJitter(_accelerationX.getArray());
+    // jitterY = computeJitter(_accelerationY.getArray());
+    // jitterZ = computeJitter(_accelerationZ.getArray());
+
+    // if (jitterX > 20 || jitterY > 20 || jitterZ > 20)
+    // {
+    //   isRunning = true;
+    //   setLed(255, 0, 0);
+    // }
+    // else
+    // {
+    //   isRunning = false;
+    //   setLed(0, 0, 0);
+    // }
 
     // Display data
     char buffDisplay[128];
@@ -109,7 +163,6 @@ void loop() {
     Screen.print(1, "Sending...");
     if (DevKitMQTTClient_SendEvent(buff))
     {
-      
       char updateBuffer [17];
       snprintf(updateBuffer, 17, "Update #%d sent", messageNumber);
       Screen.print(1, updateBuffer);

@@ -11,6 +11,7 @@
 DevI2C *i2c;
 HTS221Sensor *ht_sensor;
 LPS22HBSensor *pressureSensor;
+LSM6DSLSensor *accelerometerGyroscopeSensor;
 
 void setupSensors()
 {
@@ -21,6 +22,10 @@ void setupSensors()
 
     pressureSensor = new LPS22HBSensor(*i2c);
     pressureSensor->init(NULL);
+
+    accelerometerGyroscopeSensor = new LSM6DSLSensor(*i2c, D4, D5);
+    accelerometerGyroscopeSensor->init(NULL);
+    accelerometerGyroscopeSensor->enableAccelerator();
 }
 
 float readTemperature()
@@ -44,4 +49,12 @@ float readHumidity()
     float humidity = 0;
     ht_sensor->getHumidity(&humidity);
     return humidity;
+}
+
+int * readAccelerometer()
+{
+    int accelerometerAxes[3]; // [0]=X [1]=Y [2]=XZ
+    accelerometerGyroscopeSensor->resetStepCounter();
+    accelerometerGyroscopeSensor->getXAxes(accelerometerAxes);
+    return accelerometerAxes;
 }

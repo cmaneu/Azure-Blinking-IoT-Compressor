@@ -3,4 +3,4 @@
 
 #define DEBUG_SERIAL
 
-#define FIRMWARE_VERSION "0.2"
+#define FIRMWARE_VERSION "0.3"
